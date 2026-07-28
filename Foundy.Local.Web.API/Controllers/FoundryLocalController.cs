@@ -1,5 +1,4 @@
 ﻿using Foundry.Local.Core.Interface;
-using Foundry.Local.Core.Models;
 using Foundy.Local.Web.API.Responses;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,5 +22,24 @@ public class FoundryLocalController() : ControllerBase
         {
             Content = response ?? string.Empty
         });
+    }
+
+    [HttpPost("chat/completion/stream")]
+    public async Task StreamChatCompletionAsync(
+        [FromBody] ChatCompletionRequest request,
+        [FromServices] IChatCompletion chatCompletion,
+        CancellationToken ct)
+    {
+        Response.StatusCode = StatusCodes.Status200OK;
+        Response.ContentType = "text/event-stream";
+
+        await foreach (var chunk in chatCompletion.GetChatStreamingResponseAsync(
+            request.Messages,
+            ct))
+        {
+            await Response.WriteAsync($"data: {chunk}\n\n", ct);
+            await Response.Body.FlushAsync(ct);
+        }
+        await Response.Body.FlushAsync(ct);
     }
 }

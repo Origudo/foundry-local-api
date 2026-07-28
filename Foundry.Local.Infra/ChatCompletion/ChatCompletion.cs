@@ -18,13 +18,13 @@ public class ChatCompletion(IChatModel chatModel) : IChatCompletion
         return sb.ToString();
     }
 
-    public async Task<string?> GetChatStreamingResponseAsync(IEnumerable<ChatMessage> messages, CancellationToken ct)
+    public async IAsyncEnumerable<string> GetChatStreamingResponseAsync(
+        IEnumerable<ChatMessage> messages,
+        [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken ct)
     {
         await foreach (var content in chatModel.CompleteChatStreamingAsync(messages, ct))
         {
-            return content;
+            yield return content;
         }
-
-        return null;
     }
 }

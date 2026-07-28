@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Foundry.Local.Application/obj
+/Foundry.Local.Domain/bin/Debug/net10.0
+/Foundry.Local.Domain/obj
+/Foundry.Local.Infra/obj
+/Foundy.Local.Web.API/.vs
+/Foundy.Local.Web.API/obj
+/Foundy.Local.Web.API/Foundy.Local.Web.API.csproj.user
+/Foundry.Local.Application/bin/Debug/net10.0
+/Foundry.Local.Infra/bin/Debug/net10.0
+/Foundy.Local.Web.API/bin/Debug/net10.0

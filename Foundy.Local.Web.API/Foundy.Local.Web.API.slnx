@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/03-Core/">
+    <Project Path="../Foundry.Local.Application/Foundry.Local.Core.csproj" />
+  </Folder>
+  <Folder Name="/04-Infra/">
+    <Project Path="../Foundry.Local.Infra/Foundry.Local.Infrastructure.csproj" />
+  </Folder>
+  <Project Path="Foundy.Local.Web.API.csproj" />
+</Solution>
